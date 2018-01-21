@@ -1,39 +1,26 @@
-import java.sql.Time;
 import java.util.Random;
 
 public class Environnement extends Thread {
+    private EnvState envState;
 
-    public static enum State {OK, DANGER}
-
-    public State state = State.OK;
-
-    public Environnement() {
-
+    public Environnement(EnvState envState) {
+        this.envState = envState;
     }
 
     @Override
     public void run() {
         while (true){
-            try {
-                Thread.sleep(200);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            //changeState();
+            changeState();
         }
     }
 
     private void changeState(){
         Random r = new Random(System.currentTimeMillis());
-
-        synchronized (this.state) {
-            if (r.nextBoolean()) {
-                if (state == State.OK) {
-                    state = State.DANGER;
-                } else {
-                    state = State.OK;
-                }
-            }
+        if (r.nextBoolean()) {
+            envState.state = EnvState.State.DANGER;
+        }
+        else {
+            envState.state = EnvState.State.OK;
         }
     }
 }

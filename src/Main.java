@@ -1,14 +1,9 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Random;
 
 public class Main {
 
-    private static Environnement.State state;
-
     public static void main(String[] args) {
-
-        state = Environnement.State.DANGER;
+        EnvState envState = new EnvState();
 
         Action a1 = new Action("a1", 150);
         Action a2 = new Action("a2", 190);
@@ -41,8 +36,8 @@ public class Main {
         But B = new But("B", actionsB);
         But C = new But("C", actionsC);
 
-        Environnement env = new Environnement();
-        Agent agt = new Agent(env);
+        Environnement env = new Environnement(envState);
+        Agent agt = new Agent(envState);
 
         env.start();
         agt.start();
