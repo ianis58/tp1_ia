@@ -10,6 +10,11 @@ public class Action {
 
     public void exec(){
         System.out.println("Executing action " + name + ": sleep(" + delay + ")...");
+        try {
+            Thread.sleep(delay);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public String getName() {
