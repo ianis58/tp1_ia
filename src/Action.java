@@ -8,6 +8,10 @@ public class Action {
         this.name = name;
     }
 
+    public void exec(){
+        System.out.println("Executing action " + name + ": sleep(" + delay + ")...");
+    }
+
     public String getName() {
         return name;
     }

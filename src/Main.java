@@ -36,8 +36,13 @@ public class Main {
         But B = new But("B", actionsB);
         But C = new But("C", actionsC);
 
-        Environnement env = new Environnement(envState);
-        Agent agt = new Agent(envState);
+        ArrayList<But> buts = new ArrayList<>();
+        buts.add(A);
+        buts.add(B);
+        buts.add(C);
+
+        Agent agt = new Agent(envState, buts);
+        Environnement env = new Environnement(envState, agt);
 
         env.start();
         agt.start();
